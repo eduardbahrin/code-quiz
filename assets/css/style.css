@@ -39,3 +39,14 @@ ul {
 li {
   margin-bottom: 10px;
 }
+
+/* Hiding sections */
+
+.quiz-questions,
+.quiz-submit,
+.quiz-highscores {
+  display: none;
+}
+#check {
+  display: none;
+}
