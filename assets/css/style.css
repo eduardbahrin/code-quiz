@@ -1,20 +1,22 @@
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: center;
+}
+main {
+  text-align: center;
+  justify-content: center;
+  flex: 1 0 auto;
+  margin-left: 200px;
+  margin-right: 200px;
 }
 /* Main Header Section */
 .main-header {
-  padding: 10px;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: start;
-}
-/* Quiz Header Section */
-.quiz-header button {
-  outline: none;
-}
-.quiz-header p {
-  float: right;
+  justify-content: space-between;
+  align-items: center;
 }
