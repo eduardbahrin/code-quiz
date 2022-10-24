@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Main Header Section */
+.main-header {
+  padding: 10px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+/* Quiz Header Section */
+.quiz-header button {
+  outline: none;
+}
+.quiz-header p {
+  float: right;
+}
