@@ -10,12 +10,31 @@
 
   <body>
     <!-- header section -->
-    <header class="main-header">
-      <div class="quiz-header">
-        <button>View Highscores</button>
-        <p>Timer: 00:00</p>
+    <header>
+      <div class="main-header">
+        <button id="score-check" class="button">View Highscores</button>
+        <p id="Timer">Timer: 60 s</p>
       </div>
     </header>
-    <link rel="stylesheet" href="./assets/js/script.js" />
+
+    <!-- main container|quiz intro section -->
+    <main>
+      <div>
+        <section class="quiz-intro" id="quiz-intro">
+          <div class="intro">
+            <h1>Coding Quiz Challenge</h1>
+            <p>
+              Try to answer the following code-related questions within the time
+              limit. <br />
+              Keep in mind that incorrect answers will penalize your score/time
+              by 10 seconds!.
+            </p>
+            <button class="start-button" id="start-button">Start Quiz</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
