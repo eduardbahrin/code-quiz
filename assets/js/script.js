@@ -1,3 +1,34 @@
+// Dom elements
+
+var welcome = document.querySelector("#intro");
+var startBtn = document.querySelector("#start-button");
+var introPage = document.querySelector("#quiz-intro");
+
+var questionPage = document.querySelector("#quiz-questions");
+var askQuestion = document.querySelector("#ask-question");
+
+var reactButtons = document.querySelectorAll(".choices");
+var answerBtn1 = document.querySelector("#answer-btn1");
+var answerBtn2 = document.querySelector("#answer-btn2");
+var answerBtn3 = document.querySelector("#answer-btn3");
+var answerBtn4 = document.querySelector("#answer-btn4");
+
+var checkLine = document.querySelector("#check");
+var scoreBoard = document.querySelector("#quiz-submit");
+var finalScore = document.querySelector("#end-score");
+var userInitial = document.querySelector("#initials");
+
+var submitBtn = document.querySelector("#submit-btn");
+var highScorePage = document.querySelector("#quiz-highscores");
+var scoreRecord = document.querySelector("#score-record");
+var scoreCheck = document.querySelector("#score-check");
+var finish = document.querySelector("#end");
+
+var backBtn = document.querySelector("#back-btn");
+var clearBtn = document.querySelector("#clear-btn");
+
+//questions arrays
+
 var questionsSource = [
   {
     question: "Question 1 : Commonly used data types DO NOT include:",
@@ -64,3 +95,5 @@ var questionsSource = [
     answer: "a",
   },
 ];
+
+//
