@@ -28,72 +28,66 @@ var backBtn = document.querySelector("#back-btn");
 var clearBtn = document.querySelector("#clear-btn");
 
 //questions arrays
-
 var questionsSource = [
   {
-    question: "Question 1 : Commonly used data types DO NOT include:",
-    choices: ["a. strings", "b. booleans", "c. alerts", "d. numbers"],
-    answer: "c",
+    question: "Question 1: Commonly used data types DO NOT include:",
+    choices: [" strings", "booleans", "alerts", "numbers"],
+    answer: "alerts",
   },
   {
     question:
-      "Question 2 : The condition in an if / else statement is enclosed within ____.",
-    choices: [
-      "a. quotes",
-      "b. curly brackets",
-      "c. parentheses",
-      "d. square brackets",
-    ],
-    answer: "c",
+      "Question 2: The condition in an if / else statement is enclosed within ____.",
+    choices: [" quotes", "curly brackets", "parentheses", "square brackets"],
+    answer: "parentheses",
   },
   {
-    question: "Question 3 : Arrays in JavaScript can be used to store ____.",
+    question: "Question 3: Arrays in JavaScript can be used to store ____.",
     choices: [
-      "a. numbers and strings",
-      "b. other arrays",
-      "c. booleans",
-      "d. all of the above",
+      " numbers and strings",
+      "other arrays",
+      "booleans",
+      "all of the above",
     ],
-    answer: "d",
+    answer: "all of the above",
   },
   {
     question:
-      "Question 4 : String values must be enclosed within ____ when being assigned to variables.",
-    choices: ["a. commas", "b. curly brackets", "c. quotes", "d. parentheses"],
-    answer: "c",
+      "Question 4: String values must be enclosed within ____ when being assigned to variables.",
+    choices: [" commas", "curly brackets", "quotes", "parentheses"],
+    answer: "quotes",
   },
   {
     question:
       "Question 5 : A very useful tool used during development and debugging for printing content to the debugger is:",
-    choices: [
-      "a. JavaScript",
-      "b. terminal / bash",
-      "c. for loops",
-      "d. console.log",
-    ],
-    answer: "d",
+    choices: [" JavaScript", "terminal / bash", "for loops", "console.log()"],
+    answer: "console.log()",
   },
   {
-    question: "Question 6 : The first index of an array is ____.",
-    choices: ["a. 0", "b. 1", "c. 8", "d. any"],
-    answer: "a",
+    question: "Question 6: The first index of an array is ____.",
+    choices: [" 0", "1", "8", "any"],
+    answer: "0",
   },
   {
-    question: "Question 7 : What does DOM stand for?",
+    question: "Question 7: What does DOM stand for?",
     choices: [
-      "a. Document Object Model",
-      "b. Do Overnight Modules",
-      "c. Divas Obviously Model",
-      "d. Description, Operation & Maintenance",
+      " Document Object Model",
+      "Do Overnight Modules",
+      "Divas Obviously Model",
+      "Description, Operation & Maintenance",
     ],
-    answer: "a",
+    answer: "Document Object Model",
   },
   {
     question:
-      "Questions 8 : Which event occurs when the user clicks on an HTML element?",
-    choices: ["a. onclick", "b. onchange", "c. onmouseover", "d. onmouseclick"],
-    answer: "a",
+      "Questions 8: Which event occurs when the user clicks on a HTML element?",
+    choices: [" onclick", "onchange", "onmouseover", "onmouseclick"],
+    answer: "onclick",
   },
 ];
 
-//
+var startQuiz = function () {
+  introPage.classList.add("hide-container");
+  questionPage.classList.remove("hide-container");
+};
+
+startBtn.addEventListener("click", startQuiz);
