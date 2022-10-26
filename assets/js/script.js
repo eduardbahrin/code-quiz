@@ -3,6 +3,8 @@
 var welcome = document.querySelector("#intro");
 var startBtn = document.querySelector("#start-button");
 var introPage = document.querySelector("#quiz-intro");
+var timer = document.getElementById("timer");
+var timerContainer = document.getElementById("timer-container");
 
 var questionPage = document.querySelector("#quiz-questions");
 var askQuestion = document.querySelector("#ask-question");
@@ -29,6 +31,7 @@ var backBtn = document.querySelector("#back-btn");
 var clearBtn = document.querySelector("#clear-btn");
 
 let index = 0;
+let timerValue = 60;
 
 //questions arrays
 var questionsSource = [
@@ -88,9 +91,21 @@ var questionsSource = [
   },
 ];
 
+var startTimer = function () {
+  var timerTick = function () {
+    timerValue--;
+    timer.innerHTML = timerValue;
+  };
+
+  setInterval(timerTick, 1000);
+};
+
 var startQuiz = function () {
   introPage.classList.add("hide-container");
   questionPage.classList.remove("hide-container");
+  timerContainer.classList.remove("hide-container");
+  timer.innerHTML = timerValue;
+  startTimer();
   displayQuestion();
 };
 
@@ -110,7 +125,7 @@ var checkAnswerAndProgressQuestion = function (event) {
     event.target.value &&
     event.target.innerHTML != questionsSource[index].answer
   ) {
-    //remove time from timer
+    timerValue -= 10;
   }
 };
 
