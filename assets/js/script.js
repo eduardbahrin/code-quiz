@@ -70,7 +70,7 @@ var questionsSource = [
   },
   {
     question: "Question 6: The first index of an array is ____.",
-    choices: [" 0", "1", "8", "any"],
+    choices: ["0", "1", "8", "any"],
     answer: "0",
   },
   {
@@ -95,9 +95,14 @@ var startTimer = function () {
   var timerTick = function () {
     timerValue--;
     timer.innerHTML = timerValue;
+
+    if (timerValue === 0) {
+      clearInterval(time);
+      endQuiz();
+    }
   };
 
-  setInterval(timerTick, 1000);
+  var time = setInterval(timerTick, 1000);
 };
 
 var startQuiz = function () {
@@ -117,15 +122,33 @@ var displayQuestion = function () {
   answerBtn4.innerHTML = questionsSource[index].choices[3];
 };
 
+var endQuiz = function () {
+  questionPage.classList.add("hide-container");
+};
+
+var subtractTimeWhenWrong = function () {
+  if (timerValue >= 10) {
+    timerValue -= 10;
+  } else {
+    timerValue = 1;
+  }
+};
+
 var checkAnswerAndProgressQuestion = function (event) {
   if (event.target.innerHTML === questionsSource[index].answer) {
     index++;
-    displayQuestion();
+
+    if (index < questionsSource.length) {
+      displayQuestion();
+    } else {
+      endQuiz();
+      return;
+    }
   } else if (
     event.target.value &&
     event.target.innerHTML != questionsSource[index].answer
   ) {
-    timerValue -= 10;
+    subtractTimeWhenWrong();
   }
 };
 
