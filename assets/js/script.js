@@ -8,6 +8,7 @@ var questionPage = document.querySelector("#quiz-questions");
 var askQuestion = document.querySelector("#ask-question");
 
 var reactButtons = document.querySelectorAll(".choices");
+var buttonList = document.getElementById("button-list");
 var answerBtn1 = document.querySelector("#answer-btn1");
 var answerBtn2 = document.querySelector("#answer-btn2");
 var answerBtn3 = document.querySelector("#answer-btn3");
@@ -26,6 +27,8 @@ var finish = document.querySelector("#end");
 
 var backBtn = document.querySelector("#back-btn");
 var clearBtn = document.querySelector("#clear-btn");
+
+let index = 0;
 
 //questions arrays
 var questionsSource = [
@@ -88,6 +91,28 @@ var questionsSource = [
 var startQuiz = function () {
   introPage.classList.add("hide-container");
   questionPage.classList.remove("hide-container");
+  displayQuestion();
+};
+
+var displayQuestion = function () {
+  askQuestion.innerHTML = questionsSource[index].question;
+  answerBtn1.innerHTML = questionsSource[index].choices[0];
+  answerBtn2.innerHTML = questionsSource[index].choices[1];
+  answerBtn3.innerHTML = questionsSource[index].choices[2];
+  answerBtn4.innerHTML = questionsSource[index].choices[3];
+};
+
+var checkAnswerAndProgressQuestion = function (event) {
+  if (event.target.innerHTML === questionsSource[index].answer) {
+    index++;
+    displayQuestion();
+  } else if (
+    event.target.value &&
+    event.target.innerHTML != questionsSource[index].answer
+  ) {
+    //remove time from timer
+  }
 };
 
 startBtn.addEventListener("click", startQuiz);
+buttonList.addEventListener("click", checkAnswerAndProgressQuestion);
