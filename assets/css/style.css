@@ -41,12 +41,10 @@ li {
 }
 
 /* Hiding sections */
-
-.quiz-questions,
-.quiz-submit,
-.quiz-highscores {
+.hide-container {
   display: none;
 }
+
 #check {
   display: none;
 }
