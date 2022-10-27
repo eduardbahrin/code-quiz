@@ -30,8 +30,14 @@ var finish = document.querySelector("#end");
 var backBtn = document.querySelector("#back-btn");
 var clearBtn = document.querySelector("#clear-btn");
 
-let index = 0;
-let timerValue = 60;
+var index = 0;
+var timerValue = 60;
+var interval;
+
+var highScore = localStorage.getItem("highscore");
+if (!highScore) {
+  localStorage.setItem("highscore", JSON.stringify([]));
+}
 
 //questions arrays
 var questionsSource = [
@@ -46,49 +52,49 @@ var questionsSource = [
     choices: [" quotes", "curly brackets", "parentheses", "square brackets"],
     answer: "parentheses",
   },
-  {
-    question: "Question 3: Arrays in JavaScript can be used to store ____.",
-    choices: [
-      " numbers and strings",
-      "other arrays",
-      "booleans",
-      "all of the above",
-    ],
-    answer: "all of the above",
-  },
-  {
-    question:
-      "Question 4: String values must be enclosed within ____ when being assigned to variables.",
-    choices: [" commas", "curly brackets", "quotes", "parentheses"],
-    answer: "quotes",
-  },
-  {
-    question:
-      "Question 5 : A very useful tool used during development and debugging for printing content to the debugger is:",
-    choices: [" JavaScript", "terminal / bash", "for loops", "console.log()"],
-    answer: "console.log()",
-  },
-  {
-    question: "Question 6: The first index of an array is ____.",
-    choices: ["0", "1", "8", "any"],
-    answer: "0",
-  },
-  {
-    question: "Question 7: What does DOM stand for?",
-    choices: [
-      " Document Object Model",
-      "Do Overnight Modules",
-      "Divas Obviously Model",
-      "Description, Operation & Maintenance",
-    ],
-    answer: "Document Object Model",
-  },
-  {
-    question:
-      "Questions 8: Which event occurs when the user clicks on a HTML element?",
-    choices: [" onclick", "onchange", "onmouseover", "onmouseclick"],
-    answer: "onclick",
-  },
+  // {
+  //   question: "Question 3: Arrays in JavaScript can be used to store ____.",
+  //   choices: [
+  //     " numbers and strings",
+  //     "other arrays",
+  //     "booleans",
+  //     "all of the above",
+  //   ],
+  //   answer: "all of the above",
+  // },
+  // {
+  //   question:
+  //     "Question 4: String values must be enclosed within ____ when being assigned to variables.",
+  //   choices: [" commas", "curly brackets", "quotes", "parentheses"],
+  //   answer: "quotes",
+  // },
+  // {
+  //   question:
+  //     "Question 5 : A very useful tool used during development and debugging for printing content to the debugger is:",
+  //   choices: [" JavaScript", "terminal / bash", "for loops", "console.log()"],
+  //   answer: "console.log()",
+  // },
+  // {
+  //   question: "Question 6: The first index of an array is ____.",
+  //   choices: ["0", "1", "8", "any"],
+  //   answer: "0",
+  // },
+  // {
+  //   question: "Question 7: What does DOM stand for?",
+  //   choices: [
+  //     " Document Object Model",
+  //     "Do Overnight Modules",
+  //     "Divas Obviously Model",
+  //     "Description, Operation & Maintenance",
+  //   ],
+  //   answer: "Document Object Model",
+  // },
+  // {
+  //   question:
+  //     "Questions 8: Which event occurs when the user clicks on a HTML element?",
+  //   choices: [" onclick", "onchange", "onmouseover", "onmouseclick"],
+  //   answer: "onclick",
+  // },
 ];
 
 var startTimer = function () {
@@ -97,12 +103,12 @@ var startTimer = function () {
     timer.innerHTML = timerValue;
 
     if (timerValue === 0) {
-      clearInterval(time);
+      clearInterval(interval);
       endQuiz();
     }
   };
 
-  var time = setInterval(timerTick, 1000);
+  interval = setInterval(timerTick, 1000);
 };
 
 var startQuiz = function () {
@@ -123,16 +129,20 @@ var displayQuestion = function () {
 };
 
 var endQuiz = function () {
+  clearInterval(interval);
   questionPage.classList.add("hide-container");
+  scoreBoard.classList.remove("hide-container");
+  timerContainer.classList.add("hide-container");
+  finalScore.innerHTML = timerValue;
 };
 
-var subtractTimeWhenWrong = function () {
+function subtractTimeWhenWrong() {
   if (timerValue >= 10) {
     timerValue -= 10;
   } else {
     timerValue = 1;
   }
-};
+}
 
 var checkAnswerAndProgressQuestion = function (event) {
   if (event.target.innerHTML === questionsSource[index].answer) {
@@ -152,5 +162,20 @@ var checkAnswerAndProgressQuestion = function (event) {
   }
 };
 
+function submitScore() {
+  var userName = userInitial.value;
+
+  var myFinalScore = {
+    name: userName,
+    score: timerValue,
+  };
+
+  var highScoreArray = JSON.parse(localStorage.getItem("highscore"));
+  highScoreArray.push(myFinalScore);
+
+  localStorage.setItem("highscore", JSON.stringify(highScoreArray));
+}
+
 startBtn.addEventListener("click", startQuiz);
 buttonList.addEventListener("click", checkAnswerAndProgressQuestion);
+submitBtn.addEventListener("click", submitScore);
