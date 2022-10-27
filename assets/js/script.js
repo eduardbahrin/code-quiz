@@ -87,13 +87,13 @@ var questionsSource = [
       "Divas Obviously Model",
       "Description, Operation & Maintenance",
     ],
-    answer: "Document Object Model",
+    answer: " Document Object Model",
   },
   {
     question:
       "Questions 8: Which event occurs when the user clicks on a HTML element?",
     choices: [" onclick", "onchange", "onmouseover", "onmouseclick"],
-    answer: "onclick",
+    answer: " onclick",
   },
 ];
 
