@@ -13,7 +13,10 @@
 
     <header>
       <div class="main-header">
-        <button id="score-check" class="button">View Highscores</button>
+        <div>
+          <button id="score-check" class="button">View Highscores</button>
+          <button class="btn" id="back-btn">Restart</button>
+        </div>
         <div id="timer-container" class="hide-container">
           Time: <span id="timer"></span> s
         </div>
@@ -91,7 +94,7 @@
             <h2>HighScores</h2>
             <div id="score-record">
               <p>Your Record</p>
-              <button class="btn" id="back-btn">Go Back</button>
+              <div id="score-list-container"></div>
               <button class="btn" id="clear-btn">Clear Highscores</button>
             </div>
           </div>

@@ -1,5 +1,4 @@
 // Dom elements
-
 var welcome = document.querySelector("#intro");
 var startBtn = document.querySelector("#start-button");
 var introPage = document.querySelector("#quiz-intro");
@@ -26,6 +25,7 @@ var highScorePage = document.querySelector("#quiz-highscores");
 var scoreRecord = document.querySelector("#score-record");
 var scoreCheck = document.querySelector("#score-check");
 var finish = document.querySelector("#end");
+var scoresListContainer = document.getElementById("score-list-container");
 
 var backBtn = document.querySelector("#back-btn");
 var clearBtn = document.querySelector("#clear-btn");
@@ -52,49 +52,49 @@ var questionsSource = [
     choices: [" quotes", "curly brackets", "parentheses", "square brackets"],
     answer: "parentheses",
   },
-  // {
-  //   question: "Question 3: Arrays in JavaScript can be used to store ____.",
-  //   choices: [
-  //     " numbers and strings",
-  //     "other arrays",
-  //     "booleans",
-  //     "all of the above",
-  //   ],
-  //   answer: "all of the above",
-  // },
-  // {
-  //   question:
-  //     "Question 4: String values must be enclosed within ____ when being assigned to variables.",
-  //   choices: [" commas", "curly brackets", "quotes", "parentheses"],
-  //   answer: "quotes",
-  // },
-  // {
-  //   question:
-  //     "Question 5 : A very useful tool used during development and debugging for printing content to the debugger is:",
-  //   choices: [" JavaScript", "terminal / bash", "for loops", "console.log()"],
-  //   answer: "console.log()",
-  // },
-  // {
-  //   question: "Question 6: The first index of an array is ____.",
-  //   choices: ["0", "1", "8", "any"],
-  //   answer: "0",
-  // },
-  // {
-  //   question: "Question 7: What does DOM stand for?",
-  //   choices: [
-  //     " Document Object Model",
-  //     "Do Overnight Modules",
-  //     "Divas Obviously Model",
-  //     "Description, Operation & Maintenance",
-  //   ],
-  //   answer: "Document Object Model",
-  // },
-  // {
-  //   question:
-  //     "Questions 8: Which event occurs when the user clicks on a HTML element?",
-  //   choices: [" onclick", "onchange", "onmouseover", "onmouseclick"],
-  //   answer: "onclick",
-  // },
+  {
+    question: "Question 3: Arrays in JavaScript can be used to store ____.",
+    choices: [
+      " numbers and strings",
+      "other arrays",
+      "booleans",
+      "all of the above",
+    ],
+    answer: "all of the above",
+  },
+  {
+    question:
+      "Question 4: String values must be enclosed within ____ when being assigned to variables.",
+    choices: [" commas", "curly brackets", "quotes", "parentheses"],
+    answer: "quotes",
+  },
+  {
+    question:
+      "Question 5 : A very useful tool used during development and debugging for printing content to the debugger is:",
+    choices: [" JavaScript", "terminal / bash", "for loops", "console.log()"],
+    answer: "console.log()",
+  },
+  {
+    question: "Question 6: The first index of an array is ____.",
+    choices: ["0", "1", "8", "any"],
+    answer: "0",
+  },
+  {
+    question: "Question 7: What does DOM stand for?",
+    choices: [
+      " Document Object Model",
+      "Do Overnight Modules",
+      "Divas Obviously Model",
+      "Description, Operation & Maintenance",
+    ],
+    answer: "Document Object Model",
+  },
+  {
+    question:
+      "Questions 8: Which event occurs when the user clicks on a HTML element?",
+    choices: [" onclick", "onchange", "onmouseover", "onmouseclick"],
+    answer: "onclick",
+  },
 ];
 
 var startTimer = function () {
@@ -115,6 +115,7 @@ var startQuiz = function () {
   introPage.classList.add("hide-container");
   questionPage.classList.remove("hide-container");
   timerContainer.classList.remove("hide-container");
+  backBtn.classList.add("hide-container");
   timer.innerHTML = timerValue;
   startTimer();
   displayQuestion();
@@ -163,6 +164,8 @@ var checkAnswerAndProgressQuestion = function (event) {
 };
 
 function submitScore() {
+  backBtn.classList.remove("hide-container");
+
   var userName = userInitial.value;
 
   var myFinalScore = {
@@ -176,6 +179,45 @@ function submitScore() {
   localStorage.setItem("highscore", JSON.stringify(highScoreArray));
 }
 
+function showScoresList() {
+  // clearing interval when clkicking view highscores mid game
+  clearInterval(interval);
+  // hiding all containers
+  scoreBoard.classList.add("hide-container");
+  introPage.classList.add("hide-container");
+  questionPage.classList.add("hide-container");
+  timerContainer.classList.add("hide-container");
+  highScorePage.classList.remove("hide-container");
+  scoresListContainer.innerHTML = "";
+
+  var highScoreArray = JSON.parse(localStorage.getItem("highscore"));
+
+  for (let index = 0; index < highScoreArray.length; index++) {
+    var scoreDiv = document.createElement("div");
+    var scoreName = document.createElement("div");
+    scoreName.innerHTML = highScoreArray[index].name + ": ";
+    var scoreValue = document.createElement("span");
+    scoreValue.innerHTML = highScoreArray[index].score;
+
+    scoreName.appendChild(scoreValue);
+    scoreDiv.appendChild(scoreName);
+
+    scoresListContainer.appendChild(scoreDiv);
+  }
+}
+
+function resetGame() {
+  introPage.classList.remove("hide-container");
+  highScorePage.classList.add("hide-container");
+  scoreBoard.classList.add("hide-container");
+}
+
 startBtn.addEventListener("click", startQuiz);
 buttonList.addEventListener("click", checkAnswerAndProgressQuestion);
 submitBtn.addEventListener("click", submitScore);
+scoreCheck.addEventListener("click", showScoresList);
+backBtn.addEventListener("click", resetGame);
+clearBtn.addEventListener("click", function () {
+  localStorage.setItem("highscore", JSON.stringify([]));
+  location.reload();
+});
