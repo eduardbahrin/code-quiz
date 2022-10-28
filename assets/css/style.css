@@ -13,16 +13,49 @@ main {
   flex: 1 0 auto;
   margin-left: 200px;
   margin-right: 200px;
+  font-family: "Faustina", serif;
 }
-
+button {
+  border-radius: 7px;
+  cursor: pointer;
+}
+button:hover {
+  color: white;
+  background-color: purple;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
 /* Main Header Section */
 .main-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
+#score-check {
+  border: none;
+  color: purple;
+}
+#score-check:hover {
+  background-color: white;
+}
+#back-btn:hover {
+  color: white;
+  background-color: purple;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+/* Main container */
+#start-button {
+  padding: 14px 40px;
+}
+#start-button:hover {
+  color: white;
+  background-color: purple;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
 /* QUestions Section  */
+
 .quiz-questions {
   display: flex;
   flex-direction: column;
@@ -51,19 +84,16 @@ li {
 }
 /* Media queries */
 @media only screen and (max-width: 960px) {
-
-  }
-  main {
-    margin-left: 50px;
-    margin-right: 50px;
-  }
+}
+main {
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 @media only screen and (max-width: 520px) {
-   font-size: 130%;
-  }
-  main {
-    margin-left: 12px;
-    margin-right: 12px;
-  }
+  font-size: 130%;
+}
+main {
+  margin-left: 12px;
+  margin-right: 12px;
 }
