@@ -14,6 +14,7 @@ main {
   margin-left: 200px;
   margin-right: 200px;
 }
+
 /* Main Header Section */
 .main-header {
   display: flex;
@@ -47,4 +48,22 @@ li {
 
 #check {
   display: none;
+}
+/* Media queries */
+@media only screen and (max-width: 960px) {
+
+  }
+  main {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+   font-size: 130%;
+  }
+  main {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
 }
