@@ -97,6 +97,7 @@ var questionsSource = [
   },
 ];
 
+// time function
 var startTimer = function () {
   var timerTick = function () {
     timerValue--;
@@ -111,6 +112,7 @@ var startTimer = function () {
   interval = setInterval(timerTick, 1000);
 };
 
+// start the quiz
 var startQuiz = function () {
   introPage.classList.add("hide-container");
   questionPage.classList.remove("hide-container");
@@ -120,7 +122,7 @@ var startQuiz = function () {
   startTimer();
   displayQuestion();
 };
-
+//  generating quiz questions
 var displayQuestion = function () {
   askQuestion.innerHTML = questionsSource[index].question;
   answerBtn1.innerHTML = questionsSource[index].choices[0];
@@ -136,7 +138,7 @@ var endQuiz = function () {
   timerContainer.classList.add("hide-container");
   finalScore.innerHTML = timerValue;
 };
-
+// every wrong answer will substract 10 seconds from time allowed
 function subtractTimeWhenWrong() {
   if (timerValue >= 10) {
     timerValue -= 10;
@@ -163,6 +165,7 @@ var checkAnswerAndProgressQuestion = function (event) {
   }
 };
 
+// setting up the score
 function submitScore() {
   backBtn.classList.remove("hide-container");
 
